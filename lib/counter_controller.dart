@@ -1,7 +1,13 @@
+import 'package:contadormvc/counter_model.dart';
+
 class CounterController {
-  int counter = 0;
+  final model = CounterModel();
+
+  String getCounter() {
+    return model.counter.toString();
+  }
 
   void incrementCounter() {
-    counter++; 
+    model.incrementCounter(); 
   }
 }

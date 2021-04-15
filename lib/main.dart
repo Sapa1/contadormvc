@@ -34,7 +34,7 @@ final controller = CounterController();
           ),
           Center(
             child: Text(
-              '${controller.counter}',
+              controller.getCounter(),
               style: TextStyle(fontSize: 25),
             ),
           ),

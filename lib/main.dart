@@ -16,19 +16,19 @@ class Contador extends StatefulWidget {
 class _ContadorState extends State<Contador> {
   var resultado = 0;
 
-void _operation(String operation){
-  int novoResultado;
-if (operation == 'soma') {
-novoResultado = resultado + 1;
-} else if(operation == 'sub'){
-  novoResultado = resultado - 1;
-}
+  void _operation(Function(int, int) func) {
+    setState(() {
+      resultado = func(resultado, 1);
+    });
+  }
 
-setState(() {
-  resultado = novoResultado;
-});
+  int add(num1, num2) {
+    return num1 + num2;
+  }
 
-}
+  int sub(num1, num2) {
+    return num1 - num2;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,10 +57,10 @@ setState(() {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           OperationFloatingActionButton(Icon(Icons.add), () {
-            _operation('soma');
+            _operation(add);
           }),
           OperationFloatingActionButton(Icon(Icons.remove), () {
-            _operation('sub');
+            _operation(sub);
           }),
         ],
       ),

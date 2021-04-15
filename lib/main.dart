@@ -1,3 +1,4 @@
+import 'package:contadormvc/counter_controller.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,21 +15,7 @@ class Contador extends StatefulWidget {
 }
 
 class _ContadorState extends State<Contador> {
-  var resultado = 0;
-
-  void _operation(Function(int, int) func) {
-    setState(() {
-      resultado = func(resultado, 1);
-    });
-  }
-
-  int add(num1, num2) {
-    return num1 + num2;
-  }
-
-  int sub(num1, num2) {
-    return num1 - num2;
-  }
+final controller = CounterController();
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +34,7 @@ class _ContadorState extends State<Contador> {
           ),
           Center(
             child: Text(
-              '$resultado',
+              '${controller.counter}',
               style: TextStyle(fontSize: 25),
             ),
           ),
@@ -57,11 +44,11 @@ class _ContadorState extends State<Contador> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           OperationFloatingActionButton(Icon(Icons.add), () {
-            _operation(add);
+            setState(() {
+              controller.incrementCounter();
+            });
           }),
-          OperationFloatingActionButton(Icon(Icons.remove), () {
-            _operation(sub);
-          }),
+          OperationFloatingActionButton(Icon(Icons.remove), () {}),
         ],
       ),
     );

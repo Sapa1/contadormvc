@@ -15,7 +15,7 @@ class Contador extends StatefulWidget {
 }
 
 class _ContadorState extends State<Contador> {
-final controller = CounterController();
+  final controller = CounterController();
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +48,11 @@ final controller = CounterController();
               controller.incrementCounter();
             });
           }),
-          OperationFloatingActionButton(Icon(Icons.remove), () {}),
+          OperationFloatingActionButton(Icon(Icons.remove), () {
+            setState(() {
+              controller.decrementCounter();
+            });
+          }),
         ],
       ),
     );

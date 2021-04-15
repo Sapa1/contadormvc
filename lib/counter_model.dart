@@ -5,7 +5,7 @@ class CounterModel {
     return _counter;
   }
 
-  int modifierCounter(int valor, Function(int, int) operation) {
+  void modifierCounter(int valor, Function(int, int) operation) {
     _counter = operation(valor, _counter);
   }
 }
